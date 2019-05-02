@@ -1,11 +1,13 @@
 <template>
   <el-container>
     <el-header>Headers</el-header>
-    <el-main><el-row>
-      <el-col :span="12">
-        <highcharts :options="chartOptions"></highcharts>
-      </el-col>
-    </el-row></el-main>
+    <el-main>
+      <el-row>
+        <el-col :span="12">
+          <highcharts :options="chartOptions"></highcharts>
+        </el-col>
+      </el-row>
+    </el-main>
     <el-footer align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
   </el-container>
 </template>
@@ -35,8 +37,15 @@ export default {
       }
     };
   },
+
   created() {
-    console.log("axios", this.$http);
+    this.$http
+      .get(
+        "http://localhost/ocpu/user/opencpu/library/mysamplepack/R/test/json"
+      )
+      .then(response => {
+        this.chartOptions = response.data;
+      });
   }
 };
 </script>
