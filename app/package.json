@@ -11,6 +11,8 @@
     "axios": "^0.18.0",
     "element-theme": "^2.0.1",
     "element-ui": "^2.8.2",
+    "highcharts": "^7.1.1",
+    "highcharts-vue": "^1.2.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4"
   },
