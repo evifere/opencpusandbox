@@ -1,3 +1,22 @@
+# sample
+the sample highchart data.json is from https://www.highcharts.com/docs/getting-started/your-first-chart
+
+The url of the package to call as json 
+
+```
+http://localhost/ocpu/user/opencpu/library/mysamplepack/R/test/json
+```
+
+install package
+
+```
+cd /home/opencpu
+
+R CMD INSTALL  mysamplepack_0.1.0.tar.gz
+
+```
+
+
 # opencpu with docker
 
 
@@ -5,6 +24,7 @@
 
 <!-- code_chunk_output -->
 
+- [sample](#sample)
 - [opencpu with docker](#opencpu-with-docker)
   - [Prerequisites](#prerequisites)
   - [How Tos](#how-tos)
