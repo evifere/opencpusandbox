@@ -1,13 +1,37 @@
 <template>
   <el-container>
     <el-header>Headers</el-header>
-    <el-main>
-      <el-row>
-        <el-col :span="12">
-          <highcharts :options="chartOptions"></highcharts>
-        </el-col>
-      </el-row>
-    </el-main>
+    <el-container>
+      <el-aside width="128px">
+        <el-menu class="el-menu-vertical-demo" @select="handleVerticalMenu" :collapse="isCollapse">
+          <el-menu-item index="candlestick">
+            <img :src="'icons/candlestick.png'" width="48" height="48">
+          </el-menu-item>
+          <el-menu-item index="combo-chart">
+            <img :src="'icons/combo-chart.png'" width="48" height="48">
+          </el-menu-item>
+          <el-menu-item index="line-chart">
+            <img :src="'icons/line-chart.png'" width="48" height="48">
+          </el-menu-item>
+          <el-menu-item index="pie-chart">
+            <img :src="'icons/pie-chart.png'" width="48" height="48">
+          </el-menu-item>
+          <el-menu-item index="histogram">
+            <img :src="'icons/histogram.png'" width="48" height="48">
+          </el-menu-item>
+          <el-menu-item index="histogram2">
+            <img :src="'icons/histogram2.png'" width="48" height="48">
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <el-row>
+          <el-col :span="8">
+            <highcharts :options="chartOptions"></highcharts>
+          </el-col>
+        </el-row>
+      </el-main>
+    </el-container>
     <el-footer align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
   </el-container>
 </template>
@@ -28,6 +52,7 @@ export default {
   data() {
     return {
       version: version,
+      isCollapse: false,
       chartOptions: {
         series: [
           {
@@ -46,6 +71,18 @@ export default {
       .then(response => {
         this.chartOptions = response.data;
       });
+  },
+
+  methods: {
+    handleVerticalMenu(key, keyPath) {
+      console.log("handleVerticalMenu", key, keyPath);
+    }
   }
 };
 </script>
+
+<style>
+.el-menu-vertical-demo {
+min-height: 53em;
+}
+</style>
