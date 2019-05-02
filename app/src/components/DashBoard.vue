@@ -52,6 +52,23 @@
           <el-col :span="8">
             <highcharts :options="chartOptions"></highcharts>
           </el-col>
+          <el-col :span="8">
+            <highcharts :options="chartOptions"></highcharts>
+          </el-col>
+          <el-col :span="8">
+            <highcharts :options="chartOptions"></highcharts>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8">
+            <highcharts :options="chartOptions"></highcharts>
+          </el-col>
+          <el-col :span="8">
+            <highcharts :options="chartOptions"></highcharts>
+          </el-col>
+          <el-col :span="8">
+            <highcharts :options="chartOptions"></highcharts>
+          </el-col>
         </el-row>
       </el-main>
     </el-container>
