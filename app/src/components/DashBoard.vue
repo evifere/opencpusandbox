@@ -1,6 +1,29 @@
 <template>
   <el-container>
-    <el-header>Headers</el-header>
+    <el-header>
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+      >
+        <el-menu-item index="1">Processing Center</el-menu-item>
+        <el-menu-item index="4">Analyse Center</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">Workspace</template>
+          <el-menu-item index="2-1">Danone</el-menu-item>
+          <el-menu-item index="2-2">Lactalis</el-menu-item>
+          <el-menu-item index="2-3">Miam miam burger</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="5" >Results</el-menu-item>
+        <el-submenu index="6" class="right-menu-item">
+          <template slot="title"><img :src="'icons/female-profile.png'" width="48" height="48">User Account</template>
+          <el-menu-item index="6-1">Logout</el-menu-item>
+          <el-menu-item index="6-2">Settings</el-menu-item>
+        </el-submenu>
+ 
+      </el-menu>
+    </el-header>
     <el-container>
       <el-aside width="128px">
         <el-menu class="el-menu-vertical-demo" @select="handleVerticalMenu" :collapse="isCollapse">
@@ -19,8 +42,8 @@
           <el-menu-item index="histogram">
             <img :src="'icons/histogram.png'" width="48" height="48">
           </el-menu-item>
-          <el-menu-item index="histogram2">
-            <img :src="'icons/histogram2.png'" width="48" height="48">
+          <el-menu-item index="line-graphic">
+            <img :src="'icons/line-graphic.png'" width="48" height="48">
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -53,6 +76,7 @@ export default {
     return {
       version: version,
       isCollapse: false,
+      activeIndex:1,
       chartOptions: {
         series: [
           {
@@ -83,6 +107,10 @@ export default {
 
 <style>
 .el-menu-vertical-demo {
-min-height: 53em;
+  min-height: 53em;
+}
+
+.el-menu--horizontal > .el-submenu.right-menu-item {
+  float: right;
 }
 </style>
