@@ -24,6 +24,9 @@ export default {
      
       version: version,
     };
+  },
+  created(){
+    console.log('axios',this.$http)
   }
 };
 </script>
