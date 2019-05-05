@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 Vue.use(Element,{locale});
 
- 
+Vue.prototype.$http = axios
 Vue.use(VueAxios, axios)
 Vue.use(HighchartsVue)
 

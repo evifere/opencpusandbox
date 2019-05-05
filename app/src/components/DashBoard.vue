@@ -15,13 +15,14 @@
           <el-menu-item index="2-2">Lactalis</el-menu-item>
           <el-menu-item index="2-3">Miam miam burger</el-menu-item>
         </el-submenu>
-        <el-menu-item index="5" >Results</el-menu-item>
+        <el-menu-item index="5">Results</el-menu-item>
         <el-submenu index="6" class="right-menu-item">
-          <template slot="title"><img :src="'icons/female-profile.png'" width="48" height="48">User Account</template>
+          <template slot="title">
+            <img :src="'icons/female-profile.png'" width="48" height="48">User Account
+          </template>
           <el-menu-item index="6-1">Logout</el-menu-item>
           <el-menu-item index="6-2">Settings</el-menu-item>
         </el-submenu>
- 
       </el-menu>
     </el-header>
     <el-container>
@@ -67,7 +68,7 @@
             <highcharts :options="chartOptions"></highcharts>
           </el-col>
           <el-col :span="8">
-            <highcharts :options="chartOptions"></highcharts>
+            <highcharts :options="histogramOptions"></highcharts>
           </el-col>
         </el-row>
       </el-main>
@@ -93,11 +94,71 @@ export default {
     return {
       version: version,
       isCollapse: false,
-      activeIndex:1,
+      activeIndex: "1",
       chartOptions: {
         series: [
           {
             data: [1, 2, 3] // sample data
+          }
+        ]
+      },
+      randomSeries: [],
+      histogramOptions: {
+        chart: {
+          type: "column"
+        },
+        title: {
+          text: "Histogram of rnorm(n)"
+        },
+        subtitle: {
+          text: ""
+        },
+        xAxis: {
+        //  categories: [-3, -2, -1, 0, 1, 0, 1, 3],
+        //  crosshair: true,
+                  reversed:true,
+        },
+        yAxis: {
+          //min: 0,
+               //   reversed:true,
+          title: {
+            text: "Frequency"
+          }
+        },
+        tooltip: {
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat:
+            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+          footerFormat: "</table>",
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0,
+            borderWidth: 0,
+            groupPadding: 0,
+            shadow: false
+          }
+        },
+        series: [
+          {
+            name: "Rnorm(n)",
+            baseSeries:0,
+            data: [
+              49.9,
+              71.5,
+              106.4,
+              129.2,
+              144.0,
+              176.0,
+              135.6,
+              124.1,
+              95.6,
+              54.4
+            ]
           }
         ]
       }
@@ -105,18 +166,47 @@ export default {
   },
 
   created() {
+    let _self = this;
+
     this.$http
       .get(
-        "http://localhost/ocpu/user/opencpu/library/mysamplepack/R/test/json"
+        process.env.VUE_APP_API_BASE_URI +
+          "ocpu/user/opencpu/library/mysamplepack/R/test/json"
       )
       .then(response => {
         this.chartOptions = response.data;
+      });
+
+    this.$http
+      .post(
+        process.env.VUE_APP_API_BASE_URI +
+          "/ocpu/user/opencpu/library/chartreader/R/randomplot2",
+        {
+          n: 1000,
+          dist: "normal"
+        }
+      )
+      .then(response => {
+        let resultUrl =
+          process.env.VUE_APP_API_BASE_URI +
+          response.data.split("\n")[0] +
+          "/json";
+        console.log(resultUrl, process.env);
+
+        _self.$http.get(resultUrl).then(response => {
+          this.histogramOptions.series[0].data = response.data.counts;
+          this.histogramOptions.series[0].breaks = response.data.breaks;
+
+        });
       });
   },
 
   methods: {
     handleVerticalMenu(key, keyPath) {
       console.log("handleVerticalMenu", key, keyPath);
+    },
+    handleSelect() {
+      console.log("handleSelect");
     }
   }
 };

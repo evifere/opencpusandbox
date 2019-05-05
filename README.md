@@ -16,6 +16,12 @@ R CMD INSTALL  mysamplepack_0.1.0.tar.gz
 
 ```
 
+# histogram webography
+
+
+https://rwebapps.ocpu.io/appdemo/www/plot.html
+https://github.com/rwebapps/appdemo/blob/master/R/randomplot.R
+
 
 # opencpu with docker
 
@@ -25,6 +31,7 @@ R CMD INSTALL  mysamplepack_0.1.0.tar.gz
 <!-- code_chunk_output -->
 
 - [sample](#sample)
+- [histogram webography](#histogram-webography)
 - [opencpu with docker](#opencpu-with-docker)
   - [Prerequisites](#prerequisites)
   - [How Tos](#how-tos)

@@ -1,0 +1,23 @@
+{
+  "chart": {
+    "type": "bar"
+  },
+  "title": {
+    "text": "Fruit Consumption"
+  },
+  "xAxis": {
+    "categories": ["Apples", "Bananas", "Oranges"]
+  },
+  "yAxis": {
+    "title": {
+      "text": "Fruit eaten"
+    }
+  },
+  "series": [{
+    "name": "John",
+    "data": [5, 7, 3]
+  }, {
+    "name": "Janis",
+    "data": [1, 7, 8]
+  }]
+}
