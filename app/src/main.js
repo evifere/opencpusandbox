@@ -9,6 +9,10 @@ import Highcharts from 'highcharts'
 import highchartsMore from 'highcharts/highcharts-more'
 
 highchartsMore(Highcharts)
+import stockInit from 'highcharts/modules/stock'
+
+stockInit(Highcharts)
+
 import HighchartsVue from 'highcharts-vue'
 import App from './App.vue'
 

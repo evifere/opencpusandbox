@@ -83,11 +83,11 @@
         </el-row>
         <el-row>
           <el-col :span="24" v-show="candleStickOptions.series[0].data.length>0">
-            <high-stock
-              :key="'AAPL Stock Price'"
+            <highcharts
+              :constructor-type="'stockChart'"
               :options="candleStickOptions"
               v-if="candleStickOptions.series[0].data.length>0"
-            ></high-stock>
+            ></highcharts>
           </el-col>
         </el-row>
       </el-main>
@@ -99,16 +99,11 @@
 <script scoped>
 import { version } from "../../package.json";
 import { Chart } from "highcharts-vue";
-import highstock from "highcharts/highstock";
-import vueHightstock from "vue-highstock";
 
 export default {
   name: "Dashboard",
   components: {
-    highcharts: Chart,
-    highStock: vueHightstock(highstock, {
-      // highstock global options here
-    })
+    highcharts: Chart
   },
   props: {
     msg: String
