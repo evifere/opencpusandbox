@@ -5,6 +5,10 @@ import Element from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/fr'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Highcharts from 'highcharts'
+import highchartsMore from 'highcharts/highcharts-more'
+
+highchartsMore(Highcharts)
 import HighchartsVue from 'highcharts-vue'
 import App from './App.vue'
 

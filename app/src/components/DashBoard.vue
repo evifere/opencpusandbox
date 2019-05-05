@@ -50,6 +50,11 @@
       </el-aside>
       <el-main>
         <el-row>
+          <el-col :span="24">
+            <highcharts :options="boxplotOptions"></highcharts>
+          </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="8">
             <highcharts :options="chartFruitsOptionsA"></highcharts>
           </el-col>
@@ -122,7 +127,9 @@ export default {
       histogramOptions: require("../config/histo"),
       histogramUniformOptions: require("../config/unifhisto"),
       chartPieOptions: require("../config/pie"),
-      comboChartOptions: require("../config/combo")
+      comboChartOptions: require("../config/combo"),
+      boxplotOptions: require("../config/boxplot")
+
     };
   },
 
@@ -146,6 +153,7 @@ export default {
     this.loadRandomFruits("chartFruitsOptionsB");
     this.loadRandomFruits("chartFruitsOptionsC");
     this.loadCandlestick();
+    this.loadBoxplotCars();
   },
 
   methods: {
@@ -226,6 +234,24 @@ export default {
           _self.$http.get(resultUrl).then(response => {
             this[key].series[0].data = response.data.counts;
             this[key].series[0].breaks = response.data.breaks;
+          });
+        });
+    },
+    loadBoxplotCars() {
+      let _self = this;
+
+      this.$http
+        .post(
+          process.env.VUE_APP_API_BASE_URI +
+            "/ocpu/user/opencpu/library/chartreader/R/boxplotcars"
+        )
+        .then(response => {
+          let resultUrl =
+            process.env.VUE_APP_API_BASE_URI +
+            response.data.split("\n")[0] +
+            "/json?auto_unbox=true";
+          _self.$http.get(resultUrl).then(response => {
+            console.log(response.data)
           });
         });
     }
