@@ -71,6 +71,11 @@
             <highcharts :options="histogramUniformOptions"></highcharts>
           </el-col>
         </el-row>
+        <el-row>
+          <el-col :span="24">
+            <highcharts :options="comboChartOptions"></highcharts>
+          </el-col>
+        </el-row>
       </el-main>
     </el-container>
     <el-footer align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
@@ -80,6 +85,8 @@
 <script scoped>
 import { version } from "../../package.json";
 import { Chart } from "highcharts-vue";
+
+
 
 export default {
   name: "Dashboard",
@@ -103,101 +110,10 @@ export default {
         ]
       },
       randomSeries: [],
-      histogramOptions: {
-        chart: {
-          type: "column"
-        },
-        title: {
-          text: "Histogram of rnorm(n)"
-        },
-        subtitle: {
-          text: ""
-        },
-        yAxis: {
-          title: {
-            text: "Frequency"
-          }
-        },
-        tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-          footerFormat: "</table>",
-          shared: true,
-          useHTML: true
-        },
-        plotOptions: {
-          column: {
-            pointPadding: 0,
-            borderWidth: 0,
-            groupPadding: 0,
-            shadow: false
-          }
-        },
-        series: [
-          {
-            name: "Rnorm(n)",
-            data: []
-          }
-        ]
-      },
-      histogramUniformOptions: {
-        chart: {
-          type: "column"
-        },
-        title: {
-          text: "Histogram of runif(n)"
-        },
-        subtitle: {
-          text: ""
-        },
-        yAxis: {
-          title: {
-            text: "Frequency"
-          }
-        },
-        tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-          footerFormat: "</table>",
-          shared: true,
-          useHTML: true
-        },
-        plotOptions: {
-          column: {
-            pointPadding: 0,
-            borderWidth: 0,
-            groupPadding: 0,
-            shadow: false
-          }
-        },
-        series: [
-          {
-            name: "Runif(n)",
-            data: []
-          }
-        ]
-      },
-      chartPieOptions: {
-        chart: {
-          type: "pie"
-        },
-        title: {
-          text: "a random pie with runif(10)"
-        },
-        series: [
-          {
-            name: "runif(10)",
-            colorByPoint: true,
-            data: []
-          }
-        ]
-      }
+      histogramOptions: require('../config/histo'),
+      histogramUniformOptions: require('../config/unifhisto'),
+      chartPieOptions: require('../config/pie'),
+      comboChartOptions: require("../config/combo")
     };
   },
 
