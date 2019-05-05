@@ -247,6 +247,17 @@ export default {
             "/json?auto_unbox=true";
           _self.$http.get(resultUrl).then(response => {
             console.log(response.data)
+
+// cf https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html
+//https://www.tutorialspoint.com/r/r_boxplots.htm
+//stats 	
+//a vector of length 5, containing the extreme of the lower whisker, the lower ‘hinge’, the median, the upper ‘hinge’ and the extreme of the upper whisker.
+
+            this.boxplotOptions.xAxis.categories = response.data.names;
+            this.boxplotOptions.series[0].data = response.data.stats;
+            this.boxplotOptions.series[1].data = response.data.out;
+            
+            
           });
         });
     }

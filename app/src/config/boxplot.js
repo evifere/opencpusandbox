@@ -5,7 +5,7 @@ module.exports= {
   },
 
   title: {
-      text: 'Highcharts Box Plot Example'
+      text: 'Boxplot from mtcars'
   },
 
   legend: {
@@ -13,17 +13,17 @@ module.exports= {
   },
 
   xAxis: {
-      categories: ['1', '2', '3', '4', '5'],
+      categories: [],
       title: {
-          text: 'Experiment No.'
+          text: 'Number of Cylinders'
       }
   },
 
   yAxis: {
       title: {
-          text: 'Observations'
+          text: 'Miles Per Gallon'
       },
-      plotLines: [{
+    /*  plotLines: [{
           value: 932,
           color: 'red',
           width: 1,
@@ -34,7 +34,7 @@ module.exports= {
                   color: 'gray'
               }
           }
-      }]
+      }]*/
   },
 
   series: [{
@@ -54,10 +54,10 @@ module.exports= {
    //   color: Highcharts.getOptions().colors[0],
       type: 'scatter',
       data: [ // x, y positions where 0 is the first category
-          [0, 644],
+       /*   [0, 644],
           [4, 718],
           [4, 951],
-          [4, 969]
+          [4, 969]*/
       ],
       marker: {
           fillColor: 'white',
