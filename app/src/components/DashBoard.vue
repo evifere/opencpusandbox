@@ -117,7 +117,7 @@ export default {
       chartOptions: {
         series: [
           {
-            data: [1, 2, 3] // sample data
+            data: [3, 5, 7] // sample data
           }
         ]
       },
@@ -204,6 +204,23 @@ export default {
         });
       });
 
+    this.$http
+      .post(
+        process.env.VUE_APP_API_BASE_URI +
+          "/ocpu/user/opencpu/library/chartreader/R/randomfruits",
+        {
+          n: 10
+        }
+      )
+      .then(response => {
+        let resultUrl =
+          process.env.VUE_APP_API_BASE_URI +
+          response.data.split("\n")[0] +
+          "/json";
+        _self.$http.get(resultUrl).then(response => {
+          console.log(response.data);
+        });
+      });
     this.$http
       .get(process.env.VUE_APP_BASE_URI + "aapl-ohlc.json")
       .then(response => {
