@@ -62,13 +62,13 @@
         </el-row>
         <el-row>
           <el-col :span="8">
-            <highcharts :options="chartOptions"></highcharts>
+            <highcharts :options="histogramOptions"></highcharts>
+          </el-col>
+          <el-col :span="8">
+            <highcharts :options="chartPieOptions"></highcharts>
           </el-col>
           <el-col :span="8">
             <highcharts :options="histogramUniformOptions"></highcharts>
-          </el-col>
-          <el-col :span="8">
-            <highcharts :options="histogramOptions"></highcharts>
           </el-col>
         </el-row>
       </el-main>
@@ -182,13 +182,28 @@ export default {
             data: []
           }
         ]
+      },
+      chartPieOptions: {
+        chart: {
+          type: "pie"
+        },
+        title: {
+          text: "a random pie with runif(10)"
+        },
+        series: [
+          {
+            name: "runif(10)",
+            colorByPoint: true,
+            data: []
+          }
+        ]
       }
     };
   },
 
   created() {
     let _self = this;
-
+    console.log("this.chartPieOptions", this.chartPieOptions);
     this.$http
       .get(
         process.env.VUE_APP_API_BASE_URI +
@@ -237,6 +252,29 @@ export default {
         _self.$http.get(resultUrl).then(response => {
           this.histogramUniformOptions.series[0].data = response.data.counts;
           this.histogramUniformOptions.series[0].breaks = response.data.breaks;
+        });
+      });
+
+    this.$http
+      .post(
+        process.env.VUE_APP_API_BASE_URI +
+          "/ocpu/user/opencpu/library/chartreader/R/randompie",
+        {
+          n: 10
+        }
+      )
+      .then(response => {
+        let resultUrl =
+          process.env.VUE_APP_API_BASE_URI +
+          response.data.split("\n")[0] +
+          "/json";
+        _self.$http.get(resultUrl).then(response => {
+          console.log("pie series", response.data, this.chartPieOptions);
+          this.chartPieOptions.series[0].data = response.data.series.map(
+            (el, i) => {
+              return { y: el, name: "pie n = " + i };
+            }
+          );
         });
       });
   },
