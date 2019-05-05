@@ -11,8 +11,8 @@
         <el-menu-item index="4">Analyse Center</el-menu-item>
         <el-submenu index="2">
           <template slot="title">Workspace</template>
-          <el-menu-item index="2-1">Danone</el-menu-item>
-          <el-menu-item index="2-2">Lactalis</el-menu-item>
+          <el-menu-item index="2-1">Yanone</el-menu-item>
+          <el-menu-item index="2-2">Milktalis</el-menu-item>
           <el-menu-item index="2-3">Miam miam burger</el-menu-item>
         </el-submenu>
         <el-menu-item index="5">Results</el-menu-item>
@@ -76,6 +76,15 @@
             <highcharts :options="comboChartOptions"></highcharts>
           </el-col>
         </el-row>
+        <el-row>
+          <el-col :span="24" v-show="candleStickOptions.series[0].data.length>0">
+            <high-stock
+              :key="'AAPL Stock Price'"
+              :options="candleStickOptions"
+              v-if="candleStickOptions.series[0].data.length>0"
+            ></high-stock>
+          </el-col>
+        </el-row>
       </el-main>
     </el-container>
     <el-footer align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
@@ -85,13 +94,16 @@
 <script scoped>
 import { version } from "../../package.json";
 import { Chart } from "highcharts-vue";
-
-
+import highstock from "highcharts/highstock";
+import vueHightstock from "vue-highstock";
 
 export default {
   name: "Dashboard",
   components: {
-    highcharts: Chart
+    highcharts: Chart,
+    highStock: vueHightstock(highstock, {
+      // highstock global options here
+    })
   },
   props: {
     msg: String
@@ -101,7 +113,7 @@ export default {
     return {
       version: version,
       isCollapse: false,
-      activeIndex: "1",
+      activeIndex: "5",
       chartOptions: {
         series: [
           {
@@ -110,16 +122,16 @@ export default {
         ]
       },
       randomSeries: [],
-      histogramOptions: require('../config/histo'),
-      histogramUniformOptions: require('../config/unifhisto'),
-      chartPieOptions: require('../config/pie'),
+      candleStickOptions: require("../config/candlestick"),
+      histogramOptions: require("../config/histo"),
+      histogramUniformOptions: require("../config/unifhisto"),
+      chartPieOptions: require("../config/pie"),
       comboChartOptions: require("../config/combo")
     };
   },
 
   created() {
     let _self = this;
-    console.log("this.chartPieOptions", this.chartPieOptions);
     this.$http
       .get(
         process.env.VUE_APP_API_BASE_URI +
@@ -143,7 +155,6 @@ export default {
           process.env.VUE_APP_API_BASE_URI +
           response.data.split("\n")[0] +
           "/json";
-        console.log(resultUrl, process.env);
 
         _self.$http.get(resultUrl).then(response => {
           this.histogramOptions.series[0].data = response.data.counts;
@@ -185,13 +196,18 @@ export default {
           response.data.split("\n")[0] +
           "/json";
         _self.$http.get(resultUrl).then(response => {
-          console.log("pie series", response.data, this.chartPieOptions);
           this.chartPieOptions.series[0].data = response.data.series.map(
             (el, i) => {
               return { y: el, name: "pie n = " + i };
             }
           );
         });
+      });
+
+    this.$http
+      .get(process.env.VUE_APP_BASE_URI + "aapl-ohlc.json")
+      .then(response => {
+        this.candleStickOptions.series[0].data = response.data;
       });
   },
 
