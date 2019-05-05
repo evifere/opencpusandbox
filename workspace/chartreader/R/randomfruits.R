@@ -27,7 +27,7 @@ randomfruits <- function(n){
 
   myResult = list(yAxis=yAxis,xAxis=xAxis,title=title,chart=chart,series=series)
 
-#  myResult
-  jsonoutput <- toJSON(myResult, simplifyVector = TRUE, pretty=TRUE)
-  jsonoutput
+  myResult
+#  jsonoutput <- toJSON(myResult, simplifyVector = TRUE, pretty=FALSE, auto_unbox = TRUE)
+#  jsonoutput
 }

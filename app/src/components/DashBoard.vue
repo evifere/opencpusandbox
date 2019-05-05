@@ -54,7 +54,7 @@
             <highcharts :options="chartOptions"></highcharts>
           </el-col>
           <el-col :span="8">
-            <highcharts :options="chartOptions"></highcharts>
+            <highcharts :options="chartOptionsB"></highcharts>
           </el-col>
           <el-col :span="8">
             <highcharts :options="chartOptions"></highcharts>
@@ -121,6 +121,7 @@ export default {
           }
         ]
       },
+      chartOptionsB:{},
       randomSeries: [],
       candleStickOptions: require("../config/candlestick"),
       histogramOptions: require("../config/histo"),
@@ -135,7 +136,7 @@ export default {
     this.$http
       .get(
         process.env.VUE_APP_API_BASE_URI +
-          "ocpu/user/opencpu/library/mysamplepack/R/test/json"
+          "ocpu/user/opencpu/library/mysamplepack/R/test/json?auto_unbox=true"
       )
       .then(response => {
         this.chartOptions = response.data;
@@ -154,7 +155,7 @@ export default {
         let resultUrl =
           process.env.VUE_APP_API_BASE_URI +
           response.data.split("\n")[0] +
-          "/json";
+          "/json?auto_unbox=true";
 
         _self.$http.get(resultUrl).then(response => {
           this.histogramOptions.series[0].data = response.data.counts;
@@ -175,7 +176,7 @@ export default {
         let resultUrl =
           process.env.VUE_APP_API_BASE_URI +
           response.data.split("\n")[0] +
-          "/json";
+          "/json?auto_unbox=true";
         _self.$http.get(resultUrl).then(response => {
           this.histogramUniformOptions.series[0].data = response.data.counts;
           this.histogramUniformOptions.series[0].breaks = response.data.breaks;
@@ -209,16 +210,17 @@ export default {
         process.env.VUE_APP_API_BASE_URI +
           "/ocpu/user/opencpu/library/chartreader/R/randomfruits",
         {
-          n: 10
+          n: 3
         }
       )
       .then(response => {
         let resultUrl =
           process.env.VUE_APP_API_BASE_URI +
           response.data.split("\n")[0] +
-          "/json";
+          "/json?auto_unbox=true";
         _self.$http.get(resultUrl).then(response => {
           console.log(response.data);
+          _self.chartOptionsB = response.data;
         });
       });
     this.$http
