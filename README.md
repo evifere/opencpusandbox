@@ -7,7 +7,9 @@ dashboard lab is a free sample app to help me and hope other to understand how t
 
 # install docker image
 
-launch the opencpu image
+the docker env was taken from this project https://github.com/technologiestiftung/fhpredict-opencpu
+
+launch the opencpu image 
 
 ```shell
 docker-compose up -d
@@ -103,8 +105,16 @@ and have fun !
 
 
 https://rwebapps.ocpu.io/appdemo/www/plot.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html
+
 https://github.com/rwebapps/appdemo/blob/master/R/randomplot.R
 
+https://www.tutorialspoint.com/r/r_boxplots.htm
+
+https://github.com/technologiestiftung/fhpredict-opencpu
+
+https://hub.docker.com/r/opencpu/rstudio/
 
 # opencpu with docker
 
