@@ -1,3 +1,19 @@
+# build chartreader package
+
+go to rstudio on http://localhost:8004/rstudio/
+
+open the workspace chartreader
+
+![Go to rstudio](https://github.com/evifere/opencpusandbox/blob/master/doc/rstudio.png)
+
+then go to build sources
+
+![build sources](https://github.com/evifere/opencpusandbox/blob/master/doc/rstudio2.png)
+
+then install the package and restart opencpu server
+
+![build sources](https://github.com/evifere/opencpusandbox/blob/master/doc/rstudio3.png)
+
 # sample
 the sample highchart data.json is from https://www.highcharts.com/docs/getting-started/your-first-chart
 
@@ -30,6 +46,7 @@ https://github.com/rwebapps/appdemo/blob/master/R/randomplot.R
 
 <!-- code_chunk_output -->
 
+- [build chartreader package](#build-chartreader-package)
 - [sample](#sample)
 - [histogram webography](#histogram-webography)
 - [opencpu with docker](#opencpu-with-docker)
