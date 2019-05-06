@@ -12,7 +12,27 @@ then go to build sources
 
 then install the package and restart opencpu server
 
-![build sources](https://github.com/evifere/opencpusandbox/blob/master/doc/rstudio3.png)
+![insrtall package](https://github.com/evifere/opencpusandbox/blob/master/doc/rstudio3.png)
+
+#test package 
+
+go to
+
+http://localhost/ocpu/test/
+
+then list your avalaible packe as below
+
+
+![build sources](https://github.com/evifere/opencpusandbox/blob/master/doc/listpackage.png)
+
+
+Example: how to list  charteader avalable endpoints
+
+![build sources](https://github.com/evifere/opencpusandbox/blob/master/doc/listendpoints.png)
+
+
+
+
 
 # sample
 the sample highchart data.json is from https://www.highcharts.com/docs/getting-started/your-first-chart
