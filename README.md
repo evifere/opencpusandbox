@@ -101,7 +101,7 @@ and have fun !
 
 ![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard3.png)
 
-# histogram webography
+# webography
 
 
 https://rwebapps.ocpu.io/appdemo/www/plot.html
@@ -116,6 +116,22 @@ https://github.com/technologiestiftung/fhpredict-opencpu
 
 https://hub.docker.com/r/opencpu/rstudio/
 
+https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf
+
+http://tuxette.nathalievilla.org/?p=1696
+
+https://github.com/rwebapps/appdemo
+
+https://blog.learningtree.com/creating-web-service-in-r/
+
+http://seankross.com/notes/dpqr/
+
+https://www.tutorialspoint.com/r/r_normal_distribution.htm
+
+use "auto_unbox=T" as an option to the json endpoint
+
+https://github.com/opencpu/opencpu/issues/303
+
 # opencpu with docker
 
 
@@ -129,7 +145,7 @@ https://hub.docker.com/r/opencpu/rstudio/
 - [test package](#test-package)
 - [sample](#sample)
 - [serve the front end app](#serve-the-front-end-app)
-- [histogram webography](#histogram-webography)
+- [webography](#webography)
 - [opencpu with docker](#opencpu-with-docker)
   - [Prerequisites](#prerequisites)
   - [How Tos](#how-tos)
