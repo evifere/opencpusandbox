@@ -1,3 +1,18 @@
+# Introduction
+
+dashboard lab is a free sample app to help me and hope other to understand how to make a frontend app over an opencpu architecture
+
+
+![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard.png)
+
+# install docker image
+
+launch the opencpu image
+
+```shell
+docker-compose up -d
+```
+
 # build chartreader package
 
 go to rstudio on http://localhost:8004/rstudio/
@@ -66,6 +81,23 @@ cd /home/opencpu
 R CMD INSTALL  mysamplepack_0.1.0.tar.gz
 
 ```
+# serve the front end app
+
+```shell
+cd app
+npm run serve
+```
+
+go to http://localhost:8087/
+
+and have fun !
+
+![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard.png)
+
+
+![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard2.png)
+
+![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard3.png)
 
 # histogram webography
 
@@ -81,9 +113,12 @@ https://github.com/rwebapps/appdemo/blob/master/R/randomplot.R
 
 <!-- code_chunk_output -->
 
+- [Introduction](#introduction)
+- [install docker image](#install-docker-image)
 - [build chartreader package](#build-chartreader-package)
 - [test package](#test-package)
 - [sample](#sample)
+- [serve the front end app](#serve-the-front-end-app)
 - [histogram webography](#histogram-webography)
 - [opencpu with docker](#opencpu-with-docker)
   - [Prerequisites](#prerequisites)
