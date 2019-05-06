@@ -14,7 +14,7 @@ then install the package and restart opencpu server
 
 ![insrtall package](https://github.com/evifere/opencpusandbox/blob/master/doc/rstudio3.png)
 
-#test package 
+# test package 
 
 go to
 
@@ -30,6 +30,21 @@ Example: how to list  charteader avalable endpoints
 
 ![build sources](https://github.com/evifere/opencpusandbox/blob/master/doc/listendpoints.png)
 
+
+
+use ../user/opencpu/library/chartreader/R/boxplotcars
+
+
+![run boxplotcars](https://github.com/evifere/opencpusandbox/blob/master/doc/runboxplot.png)
+
+
+retrieve the result from the opencpu session
+
+http://localhost//ocpu/tmp/x04337ea1bc33fe/R/.val/json?auto_json=T
+
+don't forget to use auto_json=T filter if you don't want any malformed json for  frontend devloppement
+
+![get json result](https://github.com/evifere/opencpusandbox/blob/master/doc/getresult.png)
 
 
 
@@ -67,6 +82,7 @@ https://github.com/rwebapps/appdemo/blob/master/R/randomplot.R
 <!-- code_chunk_output -->
 
 - [build chartreader package](#build-chartreader-package)
+- [test package](#test-package)
 - [sample](#sample)
 - [histogram webography](#histogram-webography)
 - [opencpu with docker](#opencpu-with-docker)
