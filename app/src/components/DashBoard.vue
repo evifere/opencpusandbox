@@ -1,4 +1,4 @@
-<template>
+<template >
   <el-container>
     <el-header>
       <el-menu
@@ -6,6 +6,7 @@
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
+        v-if="isConnected"
       >
         <el-menu-item index="1">Processing Center</el-menu-item>
         <el-menu-item index="4">Analyse Center</el-menu-item>
@@ -20,13 +21,13 @@
           <template slot="title">
             <img :src="'icons/female-profile.png'" width="48" height="48">User Account
           </template>
-          <el-menu-item index="6-1">Logout</el-menu-item>
+          <el-menu-item index="6-1" @click="onLogout">Logout</el-menu-item>
           <el-menu-item index="6-2">Settings</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-header>
-    <el-container>
-      <el-aside width="128px">
+    <el-container v-if="isConnected">
+      <el-aside width="128px" v-if="isConnected">
         <el-menu class="el-menu-vertical-demo" @select="handleVerticalMenu" :collapse="isCollapse">
           <el-menu-item index="candlestick">
             <img :src="'icons/candlestick.png'" width="48" height="48">
@@ -48,6 +49,7 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
+
       <el-main>
         <el-row>
           <el-col :span="24">
@@ -92,7 +94,39 @@
         </el-row>
       </el-main>
     </el-container>
-    <el-footer align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
+    <el-footer v-if="isConnected" align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
+    <!-- login form -->
+    <el-main class="login_form" v-if="!isConnected">
+      <el-row>
+        <el-col :span="24">
+          <fieldset>
+            <legend>Welcome to dashboardlab</legend>
+            <el-form ref="form" :model="form" label-width="120px">
+              <el-form-item label="Login">
+                <el-input v-model="form.login"></el-input>
+              </el-form-item>
+              <el-form-item label="Password">
+                <el-input type="password" v-model="form.password"></el-input>
+              </el-form-item>
+
+              <el-form-item>
+                <el-button type="primary" @click="onLogin">Login</el-button>
+                <el-button>Cancel</el-button>
+              </el-form-item>
+
+              <el-alert
+                title="Authentication failed"
+                type="error"
+                description="Please try again"
+                close-text="Gotcha"
+                v-show="loggedAttempFailed"
+                show-icon
+              ></el-alert>
+            </el-form>
+          </fieldset>
+        </el-col>
+      </el-row>
+    </el-main>
   </el-container>
 </template>
 
@@ -123,8 +157,13 @@ export default {
       histogramUniformOptions: require("../config/unifhisto"),
       chartPieOptions: require("../config/pie"),
       comboChartOptions: require("../config/combo"),
-      boxplotOptions: require("../config/boxplot")
-
+      boxplotOptions: require("../config/boxplot"),
+      isConnected: false,
+      loggedAttempFailed: false,
+      form: {
+        login: "",
+        password: ""
+      }
     };
   },
 
@@ -246,20 +285,34 @@ export default {
             response.data.split("\n")[0] +
             "/json?auto_unbox=true";
           _self.$http.get(resultUrl).then(response => {
-            console.log(response.data)
+            console.log(response.data);
 
-// cf https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html
-//https://www.tutorialspoint.com/r/r_boxplots.htm
-//stats 	
-//a vector of length 5, containing the extreme of the lower whisker, the lower ‘hinge’, the median, the upper ‘hinge’ and the extreme of the upper whisker.
+            // cf https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html
+            //https://www.tutorialspoint.com/r/r_boxplots.htm
+            //stats
+            //a vector of length 5, containing the extreme of the lower whisker, the lower ‘hinge’, the median, the upper ‘hinge’ and the extreme of the upper whisker.
 
             this.boxplotOptions.xAxis.categories = response.data.names;
             this.boxplotOptions.series[0].data = response.data.stats;
             this.boxplotOptions.series[1].data = response.data.out;
-            
-            
           });
         });
+    },
+    onLogin() {
+      console.log(this.form);
+      if (
+        this.form.login === "bigdata" &&
+        this.form.password == "datascience"
+      ) {
+        this.isConnected = true;
+        this.$message("Authentication succed");
+      } else {
+        this.loggedAttempFailed = true;
+      }
+    },
+    onLogout() {
+      this.isConnected = false;
+      this.$message("Good bye");
     }
   }
 };
@@ -272,5 +325,11 @@ export default {
 
 .el-menu--horizontal > .el-submenu.right-menu-item {
   float: right;
+}
+
+.login_form {
+  margin-top: 10%;
+  position: absolute;
+  margin-left: 40%;
 }
 </style>
