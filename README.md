@@ -94,6 +94,12 @@ go to http://localhost:8087/
 
 and have fun !
 
+enter login bigdata
+password datascience
+
+![login screen](https://github.com/evifere/opencpusandbox/blob/master/doc/login.png)
+
+
 ![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard.png)
 
 
