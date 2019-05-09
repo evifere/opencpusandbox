@@ -21,6 +21,8 @@ import Dashboard from './components/Dashboard.vue'
 import Login from './components/Login.vue'
 import Todo from './components/Todo.vue'
 import Simplepie from './components/Simplepie.vue'
+import Simplehistogram from './components/Simplehisto.vue'
+import Linechart from './components/Linechart.vue'
 
 
 
@@ -33,6 +35,8 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/todo', component: Todo },
   { path:'/pie-chart',component: Simplepie},
+  { path:'/line-graphic',component: Simplehistogram},
+  { path:'/line-chart',component: Linechart},
   { path: '*', redirect: '/todo' }
 ]
 
