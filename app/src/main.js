@@ -24,7 +24,7 @@ import Simplepie from './components/Simplepie.vue'
 import Simplehistogram from './components/Simplehisto.vue'
 import Linechart from './components/Linechart.vue'
 import Combochart from './components/Combochart.vue'
-
+import DuallineColumn from './components/DuallineColumn.vue'
 
 
 Vue.use(VueRouter)
@@ -39,6 +39,7 @@ const routes = [
   { path:'/line-graphic',component: Simplehistogram},
   { path:'/line-chart',component: Linechart},
   { path:'/combo-chart',component: Combochart},
+  { path:'/histogram',component: DuallineColumn},
 
   { path: '*', redirect: '/todo' }
 ]
