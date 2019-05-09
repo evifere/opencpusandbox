@@ -301,7 +301,7 @@ export default {
         this.form.password == "datascience"
       ) {
         this.isConnected = true;
-        this.$message("Authentication succed");
+        this.$message("Authentication succeed");
       } else {
         this.loggedAttempFailed = true;
       }
