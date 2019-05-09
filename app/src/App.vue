@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-    <DashBoard msg="Welcome to datalab"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DashBoard from './components/DashBoard.vue'
 
 export default {
-  name: 'app',
-  components: {
-    DashBoard
-  }
+  name: 'app'
 }
 
 </script>

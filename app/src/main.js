@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import '../theme/index.css'
 import '../theme/display.css'
 import Element from 'element-ui'
@@ -16,6 +17,44 @@ stockInit(Highcharts)
 import HighchartsVue from 'highcharts-vue'
 import App from './App.vue'
 
+import Dashboard from './components/Dashboard.vue'
+import Login from './components/Login.vue'
+
+Vue.use(VueRouter)
+
+
+const routes = [
+  { path: '/', component: Dashboard },
+  { path: '/dashboard', component: Dashboard },
+  { path: '/login', component: Login }
+]
+
+// 3. Create the router instance and pass the `routes` option
+// You can pass in additional options here, but let's
+// keep it simple for now.
+const router = new VueRouter({
+  routes // short for `routes: routes`
+})
+
+
+router.beforeEach((to, from, next) => {
+
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('isConnected');
+
+  if (authRequired && !loggedIn) {
+    return next({ 
+      path: '/login', 
+      query: { returnUrl: to.path } 
+    });
+  }
+
+
+next();
+})
+
 Vue.config.productionTip = false
 
 Vue.use(Element,{locale});
@@ -25,5 +64,6 @@ Vue.use(VueAxios, axios)
 Vue.use(HighchartsVue)
 
 new Vue({
+  router,
   render: h => h(App)
 }).$mount('#app')
