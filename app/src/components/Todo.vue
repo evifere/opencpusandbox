@@ -1,9 +1,11 @@
 <template >
   <el-container>
+      <Sidebar></Sidebar>
+
       <el-main>
         <el-row>
           <el-col :span="24">
-            TO DO
+            TO DO 
           </el-col>
         </el-row>
       </el-main>
@@ -12,11 +14,14 @@
 
 <script scoped>
 import { version } from "../../package.json";
-import { Chart } from "highcharts-vue";
+import Sidebar from "./Sidebar.vue";
 
 export default {
   name: "Todo",
 
+  components: {
+    Sidebar
+  },
   data() {
     return {
       version: version,

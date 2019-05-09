@@ -28,7 +28,9 @@ const routes = [
   { path: '/', component: Dashboard },
   { path: '/dashboard', component: Dashboard },
   { path: '/login', component: Login },
-  { path: '/todo', component: Todo }
+  { path: '/todo', component: Todo },
+
+  { path: '*', redirect: '/todo' }
 ]
 
 // 3. Create the router instance and pass the `routes` option

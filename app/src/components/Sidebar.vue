@@ -36,6 +36,9 @@ export default {
   methods: {
     handleVerticalMenu(key, keyPath) {
       console.log("handleVerticalMenu", key, keyPath);
+      console.log("handleVerticalMenu", this.$route);
+     
+     this.$router.push({ path: '/'+key })
     }
   }
 };
