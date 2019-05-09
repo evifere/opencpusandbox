@@ -1,30 +1,5 @@
 <template >
   <el-container>
-    <el-header>
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-      >
-        <el-menu-item index="1">Processing Center</el-menu-item>
-        <el-menu-item index="4">Analyse Center</el-menu-item>
-        <el-submenu index="2">
-          <template slot="title">Workspace</template>
-          <el-menu-item index="2-1">Yanone</el-menu-item>
-          <el-menu-item index="2-2">Milktalis</el-menu-item>
-          <el-menu-item index="2-3">Miam miam burger</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="5">Results</el-menu-item>
-        <el-submenu index="6" class="right-menu-item">
-          <template slot="title">
-            <img :src="'icons/female-profile.png'" width="48" height="48">User Account
-          </template>
-          <el-menu-item index="6-1" @click="onLogout()">Logout</el-menu-item>
-          <el-menu-item index="6-2">Settings</el-menu-item>
-        </el-submenu>
-      </el-menu>
-    </el-header>
     <el-container>
       <el-aside width="128px">
         <el-menu class="el-menu-vertical-demo" @select="handleVerticalMenu" :collapse="isCollapse">
@@ -111,7 +86,6 @@ export default {
     return {
       version: version,
       isCollapse: false,
-      activeIndex: "5",
       chartFruitsOptionsA: {},
       chartFruitsOptionsB: {},
       chartFruitsOptionsC: {},
@@ -252,13 +226,6 @@ export default {
             this.boxplotOptions.series[1].data = response.data.out;
           });
         });
-    },
-    onLogout() {
-      this.isConnected = false;
-      localStorage.removeItem("isConnected");
-      console.log("onLogout");
-      this.$message("Good bye");
-      location.reload(true);
     }
   }
 };
