@@ -23,6 +23,7 @@ import Todo from './components/Todo.vue'
 import Simplepie from './components/Simplepie.vue'
 import Simplehistogram from './components/Simplehisto.vue'
 import Linechart from './components/Linechart.vue'
+import Combochart from './components/Combochart.vue'
 
 
 
@@ -37,6 +38,8 @@ const routes = [
   { path:'/pie-chart',component: Simplepie},
   { path:'/line-graphic',component: Simplehistogram},
   { path:'/line-chart',component: Linechart},
+  { path:'/combo-chart',component: Combochart},
+
   { path: '*', redirect: '/todo' }
 ]
 
