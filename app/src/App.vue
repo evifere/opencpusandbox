@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <DashBoard msg="Welcome to datalab"/>
+    <Navigation v-if="!($route.path==='/login')"></Navigation>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DashBoard from './components/DashBoard.vue'
+import Navigation from './components/Navigation.vue'
 
 export default {
   name: 'app',
-  components: {
-    DashBoard
+  components:{
+    Navigation
   }
 }
 

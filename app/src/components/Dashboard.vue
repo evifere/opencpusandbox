@@ -1,54 +1,7 @@
 <template >
   <el-container>
-    <el-header>
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-        v-if="isConnected"
-      >
-        <el-menu-item index="1">Processing Center</el-menu-item>
-        <el-menu-item index="4">Analyse Center</el-menu-item>
-        <el-submenu index="2">
-          <template slot="title">Workspace</template>
-          <el-menu-item index="2-1">Yanone</el-menu-item>
-          <el-menu-item index="2-2">Milktalis</el-menu-item>
-          <el-menu-item index="2-3">Miam miam burger</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="5">Results</el-menu-item>
-        <el-submenu index="6" class="right-menu-item">
-          <template slot="title">
-            <img :src="'icons/female-profile.png'" width="48" height="48">User Account
-          </template>
-          <el-menu-item index="6-1" @click="onLogout">Logout</el-menu-item>
-          <el-menu-item index="6-2">Settings</el-menu-item>
-        </el-submenu>
-      </el-menu>
-    </el-header>
-    <el-container v-if="isConnected">
-      <el-aside width="128px" v-if="isConnected">
-        <el-menu class="el-menu-vertical-demo" @select="handleVerticalMenu" :collapse="isCollapse">
-          <el-menu-item index="candlestick">
-            <img :src="'icons/candlestick.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="combo-chart">
-            <img :src="'icons/combo-chart.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="line-chart">
-            <img :src="'icons/line-chart.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="pie-chart">
-            <img :src="'icons/pie-chart.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="histogram">
-            <img :src="'icons/histogram.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="line-graphic">
-            <img :src="'icons/line-graphic.png'" width="48" height="48">
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
+    <el-container>
+    <Sidebar></Sidebar>
 
       <el-main>
         <el-row>
@@ -94,60 +47,26 @@
         </el-row>
       </el-main>
     </el-container>
-    <el-footer v-if="isConnected" align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
-    <!-- login form -->
-    <el-main class="login_form" v-if="!isConnected">
-      <el-row>
-        <el-col :span="24">
-          <fieldset class="one-edge-shadow">
-            <legend><img :src="'icons/logo.png'" width="48" height="48"><span>Welcome to dashboardlab</span></legend>
-            <el-form ref="form" :model="form" label-width="120px">
-              <el-form-item label="Login">
-                <el-input v-model="form.login"></el-input>
-              </el-form-item>
-              <el-form-item label="Password">
-                <el-input type="password" v-model="form.password"></el-input>
-              </el-form-item>
-
-              <el-form-item>
-                <el-button type="primary" @click="onLogin">Login</el-button>
-                <el-button>Cancel</el-button>
-              </el-form-item>
-
-              <el-alert
-                title="Authentication failed"
-                type="error"
-                description="Please try again"
-                close-text="Gotcha"
-                v-show="loggedAttempFailed"
-                show-icon
-              ></el-alert>
-            </el-form>
-          </fieldset>
-        </el-col>
-      </el-row>
-    </el-main>
+    <el-footer align="right">copyright 2018-2019 @dashboardlab v{{version}}</el-footer>
   </el-container>
 </template>
 
 <script scoped>
 import { version } from "../../package.json";
 import { Chart } from "highcharts-vue";
+import Sidebar from "./Sidebar.vue";
 
 export default {
   name: "Dashboard",
   components: {
-    highcharts: Chart
-  },
-  props: {
-    msg: String
+    highcharts: Chart,
+    Sidebar
   },
 
   data() {
     return {
       version: version,
       isCollapse: false,
-      activeIndex: "5",
       chartFruitsOptionsA: {},
       chartFruitsOptionsB: {},
       chartFruitsOptionsC: {},
@@ -157,13 +76,7 @@ export default {
       histogramUniformOptions: require("../config/unifhisto"),
       chartPieOptions: require("../config/pie"),
       comboChartOptions: require("../config/combo"),
-      boxplotOptions: require("../config/boxplot"),
-      isConnected: false,
-      loggedAttempFailed: false,
-      form: {
-        login: "",
-        password: ""
-      }
+      boxplotOptions: require("../config/boxplot")
     };
   },
 
@@ -191,12 +104,6 @@ export default {
   },
 
   methods: {
-    handleVerticalMenu(key, keyPath) {
-      console.log("handleVerticalMenu", key, keyPath);
-    },
-    handleSelect() {
-      console.log("handleSelect");
-    },
     loadRandomFruits(optionKeyname) {
       let _self = this;
 
@@ -294,52 +201,7 @@ export default {
             this.boxplotOptions.series[1].data = response.data.out;
           });
         });
-    },
-    onLogin() {
-      if (
-        this.form.login === "bigdata" &&
-        this.form.password == "datascience"
-      ) {
-        this.isConnected = true;
-        this.$message("Authentication succeed");
-      } else {
-        this.loggedAttempFailed = true;
-      }
-    },
-    onLogout() {
-      this.isConnected = false;
-      this.$message("Good bye");
     }
   }
 };
 </script>
-
-<style>
-.el-menu-vertical-demo {
-  min-height: 53em;
-}
-
-.el-menu--horizontal > .el-submenu.right-menu-item {
-  float: right;
-}
-
-.login_form {
-  margin-top: 10%;
-  position: absolute;
-  margin-left: 40%;
-}
-
-.one-edge-shadow {
-  -webkit-box-shadow: 0 8px 6px -6px black;
-  -moz-box-shadow: 0 8px 6px -6px black;
-  box-shadow: 0 8px 6px -6px black;
-}
-
-legend {
-  font-weight: bolder;
-  font-size: 18px;
-}
-legend img {
-      vertical-align: middle;
-}
-</style>
