@@ -14,7 +14,7 @@
           <el-menu-item index="2-2">Milktalis</el-menu-item>
           <el-menu-item index="2-3">Miam miam burger</el-menu-item>
         </el-submenu>
-        <el-menu-item index="5">Results</el-menu-item>
+        <el-menu-item index="5"  @click="onDashboard()">Dashboard</el-menu-item>
         <el-submenu index="6" class="right-menu-item">
           <template slot="title">
             <img :src="'icons/female-profile.png'" width="48" height="48">User Account
@@ -39,13 +39,13 @@ export default {
   },
 
   methods: {
-    handleVerticalMenu(key, keyPath) {
-      console.log("handleVerticalMenu", key, keyPath);
-    },
-    handleSelect() {
-      console.log("handleSelect");
+    handleSelect(key) {
+      console.log("handleSelect",key);
     },
   
+    onDashboard(){
+      this.$router.push({ path: '/dashboard' })
+    },
     onLogout() {
       this.isConnected = false;
       localStorage.removeItem("isConnected");
