@@ -25,6 +25,7 @@ import Simplehistogram from './components/Simplehisto.vue'
 import Linechart from './components/Linechart.vue'
 import Combochart from './components/Combochart.vue'
 import DuallineColumn from './components/DuallineColumn.vue'
+import SimpleBoxplot from './components/SimpleBoxplot.vue'
 
 
 Vue.use(VueRouter)
@@ -40,6 +41,8 @@ const routes = [
   { path:'/line-chart',component: Linechart},
   { path:'/combo-chart',component: Combochart},
   { path:'/histogram',component: DuallineColumn},
+  { path:'/candlestick',component: SimpleBoxplot},
+  
 
   { path: '*', redirect: '/todo' }
 ]
