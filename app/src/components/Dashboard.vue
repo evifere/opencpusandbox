@@ -104,12 +104,6 @@ export default {
   },
 
   methods: {
-    handleVerticalMenu(key, keyPath) {
-      console.log("handleVerticalMenu", key, keyPath);
-    },
-    handleSelect() {
-      console.log("handleSelect");
-    },
     loadRandomFruits(optionKeyname) {
       let _self = this;
 
