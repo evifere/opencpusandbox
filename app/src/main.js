@@ -19,6 +19,7 @@ import App from './App.vue'
 
 import Dashboard from './components/Dashboard.vue'
 import Login from './components/Login.vue'
+import Todo from './components/Todo.vue'
 
 Vue.use(VueRouter)
 
@@ -26,7 +27,8 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', component: Dashboard },
   { path: '/dashboard', component: Dashboard },
-  { path: '/login', component: Login }
+  { path: '/login', component: Login },
+  { path: '/todo', component: Todo }
 ]
 
 // 3. Create the router instance and pass the `routes` option
