@@ -1,28 +1,7 @@
 <template >
   <el-container>
     <el-container>
-      <el-aside width="128px">
-        <el-menu class="el-menu-vertical-demo" @select="handleVerticalMenu" :collapse="isCollapse">
-          <el-menu-item index="candlestick">
-            <img :src="'icons/candlestick.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="combo-chart">
-            <img :src="'icons/combo-chart.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="line-chart">
-            <img :src="'icons/line-chart.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="pie-chart">
-            <img :src="'icons/pie-chart.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="histogram">
-            <img :src="'icons/histogram.png'" width="48" height="48">
-          </el-menu-item>
-          <el-menu-item index="line-graphic">
-            <img :src="'icons/line-graphic.png'" width="48" height="48">
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
+    <Sidebar></Sidebar>
 
       <el-main>
         <el-row>
@@ -75,11 +54,13 @@
 <script scoped>
 import { version } from "../../package.json";
 import { Chart } from "highcharts-vue";
+import Sidebar from "./Sidebar.vue";
 
 export default {
   name: "Dashboard",
   components: {
-    highcharts: Chart
+    highcharts: Chart,
+    Sidebar
   },
 
   data() {
