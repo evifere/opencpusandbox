@@ -205,13 +205,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.el-menu-vertical-demo {
-  min-height: 53em;
-}
-
-.el-menu--horizontal > .el-submenu.right-menu-item {
-  float: right;
-}
-</style>

@@ -20,6 +20,9 @@ import App from './App.vue'
 import Dashboard from './components/Dashboard.vue'
 import Login from './components/Login.vue'
 import Todo from './components/Todo.vue'
+import Simplepie from './components/Simplepie.vue'
+
+
 
 Vue.use(VueRouter)
 
@@ -29,7 +32,7 @@ const routes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/login', component: Login },
   { path: '/todo', component: Todo },
-
+  { path:'/pie-chart',component: Simplepie},
   { path: '*', redirect: '/todo' }
 ]
 
