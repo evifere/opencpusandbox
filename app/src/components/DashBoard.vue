@@ -99,8 +99,8 @@
     <el-main class="login_form" v-if="!isConnected">
       <el-row>
         <el-col :span="24">
-          <fieldset>
-            <legend>Welcome to dashboardlab</legend>
+          <fieldset class="one-edge-shadow">
+            <legend><img :src="'icons/logo.png'" width="48" height="48"><span>Welcome to dashboardlab</span></legend>
             <el-form ref="form" :model="form" label-width="120px">
               <el-form-item label="Login">
                 <el-input v-model="form.login"></el-input>
@@ -214,7 +214,6 @@ export default {
             response.data.split("\n")[0] +
             "/json?auto_unbox=true";
           _self.$http.get(resultUrl).then(response => {
-            console.log(optionKeyname, response.data);
             _self[optionKeyname] = response.data;
           });
         });
@@ -285,8 +284,6 @@ export default {
             response.data.split("\n")[0] +
             "/json?auto_unbox=true";
           _self.$http.get(resultUrl).then(response => {
-            console.log(response.data);
-
             // cf https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/boxplot.stats.html
             //https://www.tutorialspoint.com/r/r_boxplots.htm
             //stats
@@ -299,7 +296,6 @@ export default {
         });
     },
     onLogin() {
-      console.log(this.form);
       if (
         this.form.login === "bigdata" &&
         this.form.password == "datascience"
@@ -331,5 +327,19 @@ export default {
   margin-top: 10%;
   position: absolute;
   margin-left: 40%;
+}
+
+.one-edge-shadow {
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+}
+
+legend {
+  font-weight: bolder;
+  font-size: 18px;
+}
+legend img {
+      vertical-align: middle;
 }
 </style>
