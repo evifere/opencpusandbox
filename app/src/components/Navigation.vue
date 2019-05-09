@@ -70,4 +70,8 @@ export default {
 .el-menu--horizontal > .el-submenu.right-menu-item {
   float: right;
 }
+
+.el-menu--horizontal  .is-active{
+border-bottom: 0;
+}
 </style>
