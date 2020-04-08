@@ -6,7 +6,11 @@ dashboard lab is a free sample app to help me and hope other to understand how t
 ![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard.png)
 
 # Démo
+front end app
 ![Démo](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboardlab.gif)
+
+how to build chartreader package under rstudio
+![buikd](https://github.com/evifere/opencpusandbox/blob/master/doc/buildpackage.gif)
 
 # install docker image
 
