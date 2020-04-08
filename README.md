@@ -5,6 +5,9 @@ dashboard lab is a free sample app to help me and hope other to understand how t
 
 ![dashboard screen](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboard.png)
 
+# Démo
+![Démo](https://github.com/evifere/opencpusandbox/blob/master/doc/dashboardlab.gif)
+
 # install docker image
 
 the docker env was taken from this project https://github.com/technologiestiftung/fhpredict-opencpu
